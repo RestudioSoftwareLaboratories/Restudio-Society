@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Restudio · Society</title>
+    <link rel="icon" type="image/x-icon" href="https://i.postimg.cc/02cSd2QF/restudio-profile.png" />
+    <!-- Tiny5 Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Tiny5&display=swap" rel="stylesheet" />
+    <!-- Ubuntu Sans (Thin 100) -->
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Sans:wght@100&display=swap" rel="stylesheet" />
+    <!-- Arabic + CJK + Devanagari fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Tajawal:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+Devanagari:wght@400;500;700&display=swap" rel="stylesheet" />
+    <!-- Lightgallery + Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/css/lightgallery.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+        /* ===== Reset & base ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #f5f5f5;
+            color: #1e1e1e;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ===== Top Bar ===== */
+        .top-bar {
+            background-color: #000;
+            color: #fff;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            padding: 0 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            gap: 14px;
+        }
+        .top-bar img {
+            height: 42px;
+            width: auto;
+            border-radius: 6px;
+            flex-shrink: 0;
+        }
+        .top-bar-title {
+            font-family: "Tiny5", system-ui, sans-serif;
+            font-size: 30px;
+            color: #ffffff;
+            cursor: default;
+            transition: color 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        /* ===== Language Switcher ===== */
+        .lang-switcher {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 6px;
+            padding: 4px 8px;
+            transition: border-color 0.2s, background 0.2s;
+            flex-shrink: 0;
+        }
+        .lang-switcher:hover {
+            border-color: #555;
+            background: #222;
+        }
+        .lang-switcher i {
+            color: #bbb;
+            font-size: 12px;
+            transition: color 0.2s;
+        }
+        .lang-switcher:hover i { color: #fff; }
+        .lang-switcher select {
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-family: sans-serif;
+            font-size: 12.5px;
+            cursor: pointer;
+            outline: none;
+            padding: 2px 4px;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+        .lang-switcher select option {
+            background: #111;
+            color: #fff;
+            padding: 8px;
+            font-size: 13px;
+        }
+
+        /* ===== Fade Up (مرة واحدة فقط) ===== */
+        .top-bar-title.fade-up {
+            animation: fadeUpOnce 0.8s ease forwards;
+        }
+
+        @keyframes fadeUpOnce {
+            0% { transform: translateY(0); opacity: 1; color: #ffffff; }
+            30% { transform: translateY(-6px); opacity: 0.5; color: #ffffff; }
+            60% { transform: translateY(0); opacity: 1; color: #ff0000; }
+            100% { transform: translateY(0); opacity: 1; color: #ff0000; }
+        }
+
+        /* ===== Rainbow Infinite ===== */
+        .top-bar-title.rainbow-active {
+            animation: infiniteRainbow 1.2s linear infinite;
+        }
+
+        @keyframes infiniteRainbow {
+            0%   { color: #ff0000; }
+            14%  { color: #ff7700; }
+            28%  { color: #ffff00; }
+            42%  { color: #00ff00; }
+            57%  { color: #0077ff; }
+            71%  { color: #7700ff; }
+            85%  { color: #ff00aa; }
+            100% { color: #ff0000; }
+        }
+
+        /* ===== Fade Back ===== */
+        .top-bar-title:not(:hover) {
+            animation: fadeBackToWhite 0.5s ease forwards;
+        }
+
+        @keyframes fadeBackToWhite {
+            0% { color: #ff0000; transform: translateY(0); opacity: 1; }
+            100% { color: #ffffff; transform: translateY(0); opacity: 1; }
+        }
+
+        /* ===== BANNER ===== */
+        .banner {
+            width: 100%;
+            min-height: 400px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url('https://i.postimg.cc/0yMQbsHQ/larm-rmah-AEa-TUnvneik-unsplash.jpg') center center / cover no-repeat;
+        }
+
+        .banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+            z-index: 1;
+        }
+
+        .banner-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 40px 20px;
+            pointer-events: none;
+        }
+        .banner-content h1 {
+            font-family: 'Ubuntu Sans', sans-serif;
+            font-weight: 100;
+            font-size: 4.5rem;
+            margin-bottom: 16px;
+            color: #ffffff;
+            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.7), 0 0 20px rgba(112, 146, 190, 0.5);
+            letter-spacing: 2px;
+        }
+        .banner-content p {
+            font-size: 1.4rem;
+            color: #f5f0ff;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            text-shadow: 0 2px 16px rgba(0, 0, 0, 0.8);
+            font-weight: 500;
+        }
+        .banner-content .btn {
+            display: inline-block;
+            background: #ffffff;
+            color: #1a1a2e;
+            padding: 14px 44px;
+            border-radius: 60px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: 0.3s;
+            border: 2px solid #ffffff;
+            font-size: 1.05rem;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+            cursor: pointer;
+            pointer-events: auto;
+        }
+        .banner-content .btn:hover {
+            background: transparent;
+            color: #ffffff;
+            box-shadow: 0 6px 40px rgba(112, 146, 190, 0.4);
+            border-color: #7092BE;
+        }
+
+        .banner-credit {
+            position: absolute;
+            bottom: 24px;
+            left: 30px;
+            z-index: 3;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.95rem;
+            font-weight: 400;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9);
+            pointer-events: auto;
+        }
+        .banner-credit a {
+            color: #ffffff;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 1px dotted rgba(255, 255, 255, 0.4);
+            transition: color 0.2s, border-color 0.2s;
+        }
+        .banner-credit a:hover {
+            color: #E4405F;
+            border-bottom-color: #E4405F;
+        }
+
+        /* ===== Container ===== */
+        .container-main {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 25px;
+            flex: 1;
+        }
+
+        /* ===== Section Headings ===== */
+        .about-section,
+        .goals-section,
+        .learn-section,
+        .creative-section,
+        .contact-section {
+            margin-bottom: 60px;
+            scroll-margin-top: 80px;
+        }
+
+        .about-section h2,
+        .goals-section h2,
+        .learn-section h2,
+        .creative-section h2,
+        .contact-section h2 {
+            font-family: 'Ubuntu Sans', sans-serif;
+            font-weight: 100;
+            font-size: 3rem;
+            margin-bottom: 30px;
+            color: #1a1a2e;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        .learn-section h2 { margin-bottom: 20px; }
+
+        /* ===== About Card ===== */
+        .about-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 40px 45px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            border: 1px solid #f0f0f0;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+        .about-card p {
+            color: #2a2a3a;
+            font-size: 1.05rem;
+            line-height: 1.9;
+            margin-bottom: 20px;
+        }
+        .about-card p:last-child { margin-bottom: 0; }
+        .about-card strong { color: #7092BE; }
+        .about-card .quote-line {
+            font-weight: 500;
+            color: #7092BE;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        /* ===== Goals Grid ===== */
+        .goals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .goal-item {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 22px 24px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border: 1px solid #f0f0f0;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            transition: transform 0.3s ease;
+        }
+        .goal-item:hover { transform: translateY(-4px); }
+        .goal-item .icon {
+            color: #7092BE;
+            font-size: 1.4rem;
+            margin-top: 2px;
+            min-width: 28px;
+        }
+        .goal-item span {
+            font-size: 0.98rem;
+            color: #2a2a3a;
+            line-height: 1.6;
+        }
+
+        /* ===== Learn Card ===== */
+        .learn-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 35px 45px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            border: 1px solid #f0f0f0;
+            max-width: 850px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .learn-card p {
+            color: #2a2a3a;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 0;
+        }
+
+        /* ===== Live Tiles ===== */
+        .live-tiles {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 200px;
+            gap: 12px;
+            background: #e8e8e8;
+            padding: 16px;
+            border-radius: 20px;
+            box-shadow: inset 0 2px 8px rgba(0,0,0,0.06);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .tile {
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+        .tile:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            z-index: 2;
+        }
+        .tile img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+        .tile:hover img { transform: scale(1.05); }
+
+        .tile-wide { grid-column: span 2; }
+        .tile-tall { grid-row: span 2; }
+        .tile-large { grid-column: span 2; grid-row: span 2; }
+
+        .tile .tile-title {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 12px 16px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: #fff;
+            font-size: 0.9rem;
+            font-weight: 600;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+        .tile:hover .tile-title { opacity: 1; }
+
+        .tile-inner {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 16px;
+        }
+        .tile-inner-dark { background: #1a1a2e; color: #ffd700; font-weight: 600; }
+        .tile-inner-light { background: #e8e8e8; color: #1a1a2e; flex-direction: column; }
+        .tile-inner-gold { background: #ffd700; color: #1a1a2e; font-weight: 700; }
+
+        .tile-inner .heart-icon {
+            font-size: 2.5rem;
+            color: #ff69b4;
+            margin-bottom: 12px;
+        }
+
+        /* ===== Contact ===== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: minmax(280px, 450px);
+            gap: 30px;
+            max-width: 500px;
+            margin: 0 auto;
+            justify-content: center;
+        }
+        .contact-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 35px 30px;
+            text-align: center;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            border: 1px solid #f0f0f0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .contact-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+        }
+        .contact-card .icon {
+            font-size: 2.8rem;
+            color: #7092BE;
+            margin-bottom: 12px;
+            display: block;
+        }
+        .contact-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: #111;
+        }
+        .contact-card .contact-link {
+            color: #7092BE;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.2s;
+            display: inline-block;
+            margin-top: 4px;
+        }
+        .contact-card .contact-link:hover { color: #4a6f8e; }
+        .contact-card .card-description {
+            color: #4a4a5a;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        /* ===== Footer ===== */
+        .footer {
+            background-color: #111;
+            color: #bbb;
+            text-align: center;
+            padding: 28px 20px;
+            margin-top: 30px;
+            border-top: 1px solid #2a2a2a;
+            font-size: 0.95rem;
+        }
+        .footer .fa-heart { color: #7092BE !important; }
+
+        /* ===== RTL Support ===== */
+        html[dir="rtl"] body { font-family: 'Cairo', 'Tajawal', system-ui, sans-serif; }
+        html[dir="rtl"] .top-bar img { margin-right: 0; margin-left: 14px; }
+        html[dir="rtl"] .lang-switcher { margin-left: 0; margin-right: auto; }
+        html[dir="rtl"] .banner-credit { left: auto; right: 30px; }
+        html[dir="rtl"] .about-card .quote-line { text-align: center; }
+        html[dir="rtl"] .tile .tile-title { text-align: right; }
+
+        /* Arabic headings use Tajawal */
+        html[dir="rtl"] .top-bar-title { font-family: 'Tajawal', 'Cairo', sans-serif; font-weight: 700; }
+        html[dir="rtl"] .about-section h2,
+        html[dir="rtl"] .goals-section h2,
+        html[dir="rtl"] .learn-section h2,
+        html[dir="rtl"] .creative-section h2,
+        html[dir="rtl"] .contact-section h2,
+        html[dir="rtl"] .banner-content h1 {
+            font-family: 'Tajawal', 'Cairo', sans-serif;
+            font-weight: 700;
+        }
+
+        /* CJK / Devanagari fonts */
+        html[lang="zh"] body { font-family: 'Noto Sans SC', system-ui, sans-serif; }
+        html[lang="ja"] body { font-family: 'Noto Sans JP', system-ui, sans-serif; }
+        html[lang="hi"] body { font-family: 'Noto Sans Devanagari', system-ui, sans-serif; }
+
+        html[lang="zh"] .about-section h2,
+        html[lang="zh"] .goals-section h2,
+        html[lang="zh"] .learn-section h2,
+        html[lang="zh"] .creative-section h2,
+        html[lang="zh"] .contact-section h2,
+        html[lang="zh"] .banner-content h1 {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-weight: 700;
+        }
+        html[lang="ja"] .about-section h2,
+        html[lang="ja"] .goals-section h2,
+        html[lang="ja"] .learn-section h2,
+        html[lang="ja"] .creative-section h2,
+        html[lang="ja"] .contact-section h2,
+        html[lang="ja"] .banner-content h1 {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-weight: 700;
+        }
+        html[lang="hi"] .about-section h2,
+        html[lang="hi"] .goals-section h2,
+        html[lang="hi"] .learn-section h2,
+        html[lang="hi"] .creative-section h2,
+        html[lang="hi"] .contact-section h2,
+        html[lang="hi"] .banner-content h1 {
+            font-family: 'Noto Sans Devanagari', sans-serif;
+            font-weight: 700;
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 900px) {
+            .live-tiles { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 180px; }
+            .tile-wide { grid-column: span 2; }
+            .tile-large { grid-column: span 2; grid-row: span 2; }
+        }
+
+        @media (max-width: 600px) {
+            .top-bar { padding: 0 16px; height: 64px; gap: 10px; }
+            .top-bar img { height: 34px; }
+            .top-bar-title { font-size: 22px; }
+            .lang-switcher { padding: 3px 6px; }
+            .lang-switcher select { font-size: 11.5px; }
+            .banner { min-height: 300px; }
+            .banner-content h1 { font-size: 3rem; }
+            .banner-content p { font-size: 1.1rem; }
+            .banner-credit { left: 16px; bottom: 16px; font-size: 0.8rem; }
+            html[dir="rtl"] .banner-credit { left: auto; right: 16px; }
+            .about-section h2,
+            .goals-section h2,
+            .learn-section h2,
+            .creative-section h2,
+            .contact-section h2 { font-size: 2.2rem; }
+            .about-card { padding: 25px 20px; }
+            .learn-card { padding: 25px 20px; }
+            .goals-grid { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; max-width: 400px; }
+            .about-card p { font-size: 0.98rem; }
+            .live-tiles { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 150px; gap: 8px; padding: 10px; }
+            .tile-wide { grid-column: span 2; }
+            .tile-tall { grid-row: span 1; }
+            .tile-large { grid-column: span 2; grid-row: span 1; }
+            .tile .tile-title { font-size: 0.75rem; padding: 8px 12px; }
+        }
+
+        @media (max-width: 400px) {
+            .live-tiles { grid-template-columns: 1fr 1fr; grid-auto-rows: 120px; gap: 6px; padding: 8px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== Top Bar ===== -->
+    <header class="top-bar">
+        <img src="https://i.postimg.cc/LXvCQ5rt/swrh-restudio.png" alt="Restudio Logo" />
+        <span class="top-bar-title" id="societyTitle">Society</span>
+
+        <!-- Language Switcher -->
+        <div class="lang-switcher">
+            <i class="fas fa-globe"></i>
+            <select id="langSelect" aria-label="Language">
+                <option value="en">English</option>
+                <option value="ar">العربية</option>
+                <option value="zh">中文</option>
+                <option value="hi">हिन्दी</option>
+                <option value="ja">日本語</option>
+            </select>
+        </div>
+    </header>
+
+    <!-- ===== BANNER ===== -->
+    <section class="banner">
+        <div class="banner-content">
+            <h1 data-i18n="banner_title">Welcome To Society</h1>
+            <p data-i18n="banner_sub">A small initiative by Restudio Software Laboratories.</p>
+            <a href="#about" class="btn" data-i18n="banner_btn">Explore More</a>
+        </div>
+
+        <div class="banner-credit">
+            <span data-i18n="banner_credit">This Background Is By</span>
+            <a href="https://unsplash.com/@larm" target="_blank" rel="noopener noreferrer">Larm Rmah</a>
+        </div>
+    </section>
+
+    <!-- ===== Main ===== -->
+    <main class="container-main">
+
+        <!-- ===== ABOUT SECTION ===== -->
+        <section class="about-section" id="about">
+            <h2 data-i18n="about_title">About Society</h2>
+            <div class="about-card">
+                <p data-i18n-html="about_p1">
+                    <strong>Restudio Society</strong> is the humanitarian initiative of <strong>Restudio Software Laboratories</strong>,
+                    dedicated to making technology and knowledge accessible to everyone, and combating discrimination among developers
+                    based on race, origin, or background.
+                </p>
+                <p data-i18n-html="about_p2">
+                    Restudio Society works to help people — especially those facing financial difficulties — access, learn, and
+                    understand technology. It does so by providing Restudio products for free and sharing technical knowledge
+                    through <strong>Restudio Learn</strong>, a platform dedicated to documenting Restudio products and explaining
+                    how to use them.
+                </p>
+                <p data-i18n-html="about_p3">
+                    Restudio Society believes that financial circumstances, social background, or race should never be a barrier
+                    to learning technology or becoming a developer.
+                </p>
+                <p class="quote-line" data-i18n-html="about_quote">
+                    <i class="fas fa-quote-left" style="margin-right: 8px; opacity: 0.6;"></i>
+                    Our mission is not just to make technology free, but to make its <strong>knowledge, understanding, and access</strong>
+                    available to as many people as possible.
+                </p>
+            </div>
+        </section>
+
+        <!-- ===== GOALS SECTION ===== -->
+        <section class="goals-section" id="goals">
+            <h2 data-i18n="goals_title">Our Goals</h2>
+            <div class="goals-grid">
+                <div class="goal-item">
+                    <span class="icon"><i class="fas fa-ban"></i></span>
+                    <span data-i18n="goal_1">Combat racial and ethnic discrimination in the developer community.</span>
+                </div>
+                <div class="goal-item">
+                    <span class="icon"><i class="fas fa-gift"></i></span>
+                    <span data-i18n="goal_2">Provide Restudio products for free to those in need.</span>
+                </div>
+                <div class="goal-item">
+                    <span class="icon"><i class="fas fa-book-open"></i></span>
+                    <span data-i18n="goal_3">Make Restudio product documentation and knowledge available through Restudio Learn.</span>
+                </div>
+                <div class="goal-item">
+                    <span class="icon"><i class="fas fa-laptop-code"></i></span>
+                    <span data-i18n="goal_4">Help people with limited income learn about technology and programming.</span>
+                </div>
+                <div class="goal-item">
+                    <span class="icon"><i class="fas fa-rocket"></i></span>
+                    <span data-i18n="goal_5">Encourage beginners to enter the development field.</span>
+                </div>
+                <div class="goal-item">
+                    <span class="icon"><i class="fas fa-bridge"></i></span>
+                    <span data-i18n="goal_6">Reduce financial and knowledge barriers to accessing technology.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== RESTUDIO LEARN SECTION ===== -->
+        <section class="learn-section" id="learn">
+            <h2 data-i18n="learn_title">Restudio Learn</h2>
+            <div class="learn-card">
+                <p data-i18n-html="learn_p">
+                    A platform dedicated to documenting <strong>Restudio</strong> products and explaining their use in a simple way,
+                    making technical knowledge accessible to everyone — especially those who cannot afford paid courses or tools.
+                </p>
+            </div>
+        </section>
+
+        <!-- ===== OTHER IMAGES ===== -->
+        <section class="creative-section" id="creative">
+            <h2 data-i18n="images_title">Other Images</h2>
+
+            <div class="live-tiles" id="lightgallery">
+                <!-- Tile 1: Wide -->
+                <a href="https://i.postimg.cc/pTRwjfkL/eeva.png" class="tile tile-wide" data-sub-html="<h4>Eva</h4><p>Eva seeks to provide technical solutions to the most underserved groups to support their development.</p>">
+                    <img src="https://i.postimg.cc/pTRwjfkL/eeva.png" alt="Eva" />
+                    <div class="tile-title" data-i18n="tile_eva_desc">Eva seeks to provide technical solutions to the most underserved groups to support their development.</div>
+                </a>
+
+                <!-- Tile 2 -->
+                <a href="https://i.postimg.cc/3RTL63D0/yannis-h-ua-Pa-EM7Mi-QQ-unsplash.jpg" class="tile" data-sub-html="<h4>Humanitarian Initiative</h4><p>Supporting communities through technology and open source. (Yannis H)</p>">
+                    <img src="https://i.postimg.cc/3RTL63D0/yannis-h-ua-Pa-EM7Mi-QQ-unsplash.jpg" alt="Humanitarian Initiative" />
+                    <div class="tile-title" data-i18n="tile_humanitarian">Humanitarian Initiative</div>
+                </a>
+
+                <!-- Tile 3 -->
+                <div class="tile" style="cursor: default;">
+                    <div class="tile-inner tile-inner-dark">
+                        <span style="font-size: 0.9rem;">#TechForAll</span>
+                    </div>
+                    <div class="tile-title" data-i18n="tile_techforall">Technology for Everyone</div>
+                </div>
+
+                <!-- Tile 4: Tall -->
+                <div class="tile tile-tall" style="cursor: default;">
+                    <div class="tile-inner tile-inner-light">
+                        <i class="fas fa-heart heart-icon"></i>
+                        <span style="font-size: 0.85rem; font-weight: 500; line-height: 1.6;" data-i18n="tile_mission_desc">Building a more inclusive tech community</span>
+                    </div>
+                    <div class="tile-title" data-i18n="tile_mission">Our Mission</div>
+                </div>
+
+                <!-- Tile 5: Wide -->
+                <div class="tile tile-wide" style="cursor: default;">
+                    <div class="tile-inner tile-inner-gold">
+                        <span style="font-size: 1.1rem;" data-i18n="tile_opensource">Open Source · Free · Accessible</span>
+                    </div>
+                    <div class="tile-title" data-i18n="tile_learn">Restudio Learn</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== CONTACT SECTION ===== -->
+        <section class="contact-section" id="contact">
+            <h2 data-i18n="contact_title">Contact Us</h2>
+
+            <div class="contact-grid">
+                <a href="mailto:restudiosupport@gmail.com" class="contact-card">
+                    <span class="icon"><i class="fas fa-envelope"></i></span>
+                    <h3 data-i18n="contact_email">Email</h3>
+                    <span class="contact-link">restudiosupport@gmail.com</span>
+                    <p class="card-description" data-i18n="contact_desc">
+                        We are here to serve you, user! Talk to us anytime!
+                    </p>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===== Footer ===== -->
+    <footer class="footer">
+        <p data-i18n="footer_text">Part of RSL (Restudio Software Laboratories)</p>
+    </footer>
+
+    <!-- i18next + Lightgallery JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/js/lightgallery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/i18next@23.11.5/dist/umd/i18next.min.js"></script>
+    <script>
+        /* ============================================================
+           i18n Resources
+           ============================================================ */
+        const resources = {
+            en: { translation: {
+                page_title: "Restudio · Society",
+                banner_title: "Welcome To Society",
+                banner_sub: "A small initiative by Restudio Software Laboratories.",
+                banner_btn: "Explore More",
+                banner_credit: "This Background Is By",
+                about_title: "About Society",
+                about_p1: "<strong>Restudio Society</strong> is the humanitarian initiative of <strong>Restudio Software Laboratories</strong>, dedicated to making technology and knowledge accessible to everyone, and combating discrimination among developers based on race, origin, or background.",
+                about_p2: "Restudio Society works to help people — especially those facing financial difficulties — access, learn, and understand technology. It does so by providing Restudio products for free and sharing technical knowledge through <strong>Restudio Learn</strong>, a platform dedicated to documenting Restudio products and explaining how to use them.",
+                about_p3: "Restudio Society believes that financial circumstances, social background, or race should never be a barrier to learning technology or becoming a developer.",
+                about_quote: "<i class=\"fas fa-quote-left\" style=\"margin-right: 8px; opacity: 0.6;\"></i> Our mission is not just to make technology free, but to make its <strong>knowledge, understanding, and access</strong> available to as many people as possible.",
+                goals_title: "Our Goals",
+                goal_1: "Combat racial and ethnic discrimination in the developer community.",
+                goal_2: "Provide Restudio products for free to those in need.",
+                goal_3: "Make Restudio product documentation and knowledge available through Restudio Learn.",
+                goal_4: "Help people with limited income learn about technology and programming.",
+                goal_5: "Encourage beginners to enter the development field.",
+                goal_6: "Reduce financial and knowledge barriers to accessing technology.",
+                learn_title: "Restudio Learn",
+                learn_p: "A platform dedicated to documenting <strong>Restudio</strong> products and explaining their use in a simple way, making technical knowledge accessible to everyone — especially those who cannot afford paid courses or tools.",
+                images_title: "Other Images",
+                tile_eva_desc: "Eva seeks to provide technical solutions to the most underserved groups to support their development.",
+                tile_humanitarian: "Humanitarian Initiative",
+                tile_techforall: "Technology for Everyone",
+                tile_mission_desc: "Building a more inclusive tech community",
+                tile_mission: "Our Mission",
+                tile_opensource: "Open Source · Free · Accessible",
+                tile_learn: "Restudio Learn",
+                contact_title: "Contact Us",
+                contact_email: "Email",
+                contact_desc: "We are here to serve you, user! Talk to us anytime!",
+                footer_text: "Part of RSL (Restudio Software Laboratories)"
+            }},
+            ar: { translation: {
+                page_title: "ريستوديو · المجتمع",
+                banner_title: "مرحبًا بك في المجتمع",
+                banner_sub: "مبادرة صغيرة من مختبرات ريستوديو للبرمجيات.",
+                banner_btn: "اكتشف المزيد",
+                banner_credit: "هذه الخلفية من تصميم",
+                about_title: "حول المجتمع",
+                about_p1: "<strong>ريستوديو المجتمع</strong> هي المبادرة الإنسانية لـ<strong>مختبرات ريستوديو للبرمجيات</strong>، المكرَّسة لجعل التكنولوجيا والمعرفة في متناول الجميع، ومكافحة التمييز بين المطورين على أساس العرق أو الأصل أو الخلفية.",
+                about_p2: "يعمل ريستوديو المجتمع على مساعدة الناس — خاصةً من يواجهون صعوبات مالية — على الوصول إلى التكنولوجيا وتعلّمها وفهمها. ويقوم بذلك من خلال توفير منتجات ريستوديو مجانًا ومشاركة المعرفة التقنية عبر <strong>ريستوديو تعلّم</strong>، وهي منصة مخصَّصة لتوثيق منتجات ريستوديو وشرح كيفية استخدامها.",
+                about_p3: "يؤمن ريستوديو المجتمع بأن الظروف المالية أو الخلفية الاجتماعية أو العرق يجب ألّا تكون أبدًا حاجزًا أمام تعلّم التكنولوجيا أو أن يصبح المرء مطورًا.",
+                about_quote: "<i class=\"fas fa-quote-left\" style=\"margin-right: 8px; opacity: 0.6;\"></i> مهمتنا ليست فقط جعل التكنولوجيا مجانية، بل جعل <strong>معرفتها وفهمها والوصول إليها</strong> متاحًا لأكبر عدد ممكن من الناس.",
+                goals_title: "أهدافنا",
+                goal_1: "مكافحة التمييز العنصري والعرقي في مجتمع المطورين.",
+                goal_2: "توفير منتجات ريستوديو مجانًا للمحتاجين.",
+                goal_3: "إتاحة وثائق منتجات ريستوديو ومعرفتها عبر ريستوديو تعلّم.",
+                goal_4: "مساعدة ذوي الدخل المحدود على تعلّم التكنولوجيا والبرمجة.",
+                goal_5: "تشجيع المبتدئين على دخول مجال التطوير.",
+                goal_6: "تقليل الحواجز المالية والمعرفية أمام الوصول إلى التكنولوجيا.",
+                learn_title: "ريستوديو تعلّم",
+                learn_p: "منصة مخصَّصة لتوثيق منتجات <strong>ريستوديو</strong> وشرح استخدامها بطريقة مبسّطة، مما يجعل المعرفة التقنية في متناول الجميع — خاصةً من لا يستطيعون تحمّل تكاليف الدورات أو الأدوات المدفوعة.",
+                images_title: "صور أخرى",
+                tile_eva_desc: "تسعى Eva إلى تقديم حلول تقنية للفئات الأكثر احتياجًا لدعم تطورها.",
+                tile_humanitarian: "مبادرة إنسانية",
+                tile_techforall: "التكنولوجيا للجميع",
+                tile_mission_desc: "بناء مجتمع تقني أكثر شمولًا",
+                tile_mission: "مهمتنا",
+                tile_opensource: "مفتوح المصدر · مجاني · متاح للجميع",
+                tile_learn: "ريستوديو تعلّم",
+                contact_title: "اتصل بنا",
+                contact_email: "البريد الإلكتروني",
+                contact_desc: "نحن هنا لخدمتك أيها المستخدم! تواصل معنا في أي وقت!",
+                footer_text: "جزء من RSL (مختبرات ريستوديو للبرمجيات)"
+            }},
+            zh: { translation: {
+                page_title: "Restudio · 社会",
+                banner_title: "欢迎来到社会",
+                banner_sub: "Restudio 软件实验室的一项小型倡议。",
+                banner_btn: "探索更多",
+                banner_credit: "此背景由以下作者提供",
+                about_title: "关于社会",
+                about_p1: "<strong>Restudio 社会</strong>是<strong>Restudio 软件实验室</strong>的人道主义倡议，致力于让每个人都能获得技术和知识，并反对开发者社区中基于种族、出身或背景的歧视。",
+                about_p2: "Restudio 社会致力于帮助人们——特别是面临经济困难的人——接触、学习和理解技术。它通过免费提供 Restudio 产品，并通过 <strong>Restudio Learn</strong> 分享技术知识来实现这一目标，这是一个专门记录 Restudio 产品并解释如何使用它们的平台。",
+                about_p3: "Restudio 社会相信，经济状况、社会背景或种族绝不应成为学习技术或成为开发者的障碍。",
+                about_quote: "<i class=\"fas fa-quote-left\" style=\"margin-right: 8px; opacity: 0.6;\"></i> 我们的使命不仅是让技术免费，更是让尽可能多的人获得其<strong>知识、理解和访问权</strong>。",
+                goals_title: "我们的目标",
+                goal_1: "打击开发者社区中的种族和民族歧视。",
+                goal_2: "为有需要的人免费提供 Restudio 产品。",
+                goal_3: "通过 Restudio Learn 提供 Restudio 产品文档和知识。",
+                goal_4: "帮助收入有限的人学习技术和编程。",
+                goal_5: "鼓励初学者进入开发领域。",
+                goal_6: "减少获取技术的经济与知识障碍。",
+                learn_title: "Restudio Learn",
+                learn_p: "一个致力于记录 <strong>Restudio</strong> 产品并以简单方式解释其用途的平台，让每个人都能获得技术知识——尤其是那些负担不起付费课程或工具的人。",
+                images_title: "其他图片",
+                tile_eva_desc: "Eva 致力于为最需要帮助的群体提供技术解决方案，以支持他们的发展。",
+                tile_humanitarian: "人道主义倡议",
+                tile_techforall: "人人享有技术",
+                tile_mission_desc: "构建更具包容性的技术社区",
+                tile_mission: "我们的使命",
+                tile_opensource: "开源 · 免费 · 人人可用",
+                tile_learn: "Restudio Learn",
+                contact_title: "联系我们",
+                contact_email: "电子邮件",
+                contact_desc: "我们随时为您服务，用户！随时与我们联系！",
+                footer_text: "RSL（Restudio 软件实验室）的一部分"
+            }},
+            hi: { translation: {
+                page_title: "Restudio · सोसाइटी",
+                banner_title: "सोसाइटी में आपका स्वागत है",
+                banner_sub: "Restudio Software Laboratories की एक छोटी पहल।",
+                banner_btn: "और जानें",
+                banner_credit: "यह पृष्ठभूमि इसके द्वारा है",
+                about_title: "सोसाइटी के बारे में",
+                about_p1: "<strong>Restudio सोसाइटी</strong>, <strong>Restudio Software Laboratories</strong> की मानवीय पहल है, जो तकनीक और ज्ञान को सभी के लिए सुलभ बनाने और डेवलपर समुदाय में नस्ल, मूल या पृष्ठभूमि के आधार पर भेदभाव का मुकाबला करने के लिए समर्पित है।",
+                about_p2: "Restudio सोसाइटी लोगों की मदद करने के लिए काम करती है — विशेषकर आर्थिक कठिनाइयों का सामना करने वालों की — तकनीक तक पहुँचने, सीखने और समझने में। यह Restudio उत्पादों को मुफ्त में प्रदान करके और <strong>Restudio Learn</strong> के माध्यम से तकनीकी ज्ञान साझा करके ऐसा करती है, जो Restudio उत्पादों को प्रलेखित करने और उनके उपयोग को समझाने के लिए समर्पित एक मंच है।",
+                about_p3: "Restudio सोसाइटी का मानना है कि आर्थिक परिस्थितियाँ, सामाजिक पृष्ठभूमि या नस्ल कभी भी तकनीक सीखने या डेवलपर बनने में बाधा नहीं होनी चाहिए।",
+                about_quote: "<i class=\"fas fa-quote-left\" style=\"margin-right: 8px; opacity: 0.6;\"></i> हमारा मिशन केवल तकनीक को मुफ्त बनाना नहीं है, बल्कि इसके <strong>ज्ञान, समझ और पहुँच</strong> को अधिक से अधिक लोगों के लिए उपलब्ध कराना है।",
+                goals_title: "हमारे लक्ष्य",
+                goal_1: "डेवलपर समुदाय में नस्लीय और जातीय भेदभाव का मुकाबला करना।",
+                goal_2: "जरूरतमंदों को Restudio उत्पाद मुफ्त में प्रदान करना।",
+                goal_3: "Restudio Learn के माध्यम से Restudio उत्पाद दस्तावेज़ और ज्ञान उपलब्ध कराना।",
+                goal_4: "सीमित आय वाले लोगों को तकनीक और प्रोग्रामिंग सीखने में मदद करना।",
+                goal_5: "शुरुआती लोगों को डेवलपमेंट क्षेत्र में प्रवेश के लिए प्रोत्साहित करना।",
+                goal_6: "तकनीक तक पहुँचने में आर्थिक और ज्ञान संबंधी बाधाओं को कम करना।",
+                learn_title: "Restudio Learn",
+                learn_p: "एक मंच जो <strong>Restudio</strong> उत्पादों को प्रलेखित करने और उनके उपयोग को सरल तरीके से समझाने के लिए समर्पित है, जिससे तकनीकी ज्ञान सभी के लिए सुलभ हो जाए — विशेषकर उन लोगों के लिए जो सशुल्क पाठ्यक्रम या उपकरण वहन नहीं कर सकते।",
+                images_title: "अन्य छवियाँ",
+                tile_eva_desc: "Eva सबसे वंचित समूहों को तकनीकी समाधान प्रदान करने का प्रयास करती है ताकि उनका विकास समर्थित हो सके।",
+                tile_humanitarian: "मानवीय पहल",
+                tile_techforall: "सभी के लिए तकनीक",
+                tile_mission_desc: "अधिक समावेशी टेक समुदाय का निर्माण",
+                tile_mission: "हमारा मिशन",
+                tile_opensource: "ओपन सोर्स · मुफ़्त · सुलभ",
+                tile_learn: "Restudio Learn",
+                contact_title: "संपर्क करें",
+                contact_email: "ईमेल",
+                contact_desc: "हम आपकी सेवा के लिए यहाँ हैं, उपयोगकर्ता! कभी भी हमसे संपर्क करें!",
+                footer_text: "RSL (Restudio Software Laboratories) का हिस्सा"
+            }},
+            ja: { translation: {
+                page_title: "Restudio · ソサエティ",
+                banner_title: "ソサエティへようこそ",
+                banner_sub: "Restudio Software Laboratories による小さな取り組み。",
+                banner_btn: "もっと見る",
+                banner_credit: "この背景画像の作者:",
+                about_title: "ソサエティについて",
+                about_p1: "<strong>Restudio ソサエティ</strong>は、<strong>Restudio Software Laboratories</strong> の人道的な取り組みであり、テクノロジーと知識をすべての人に届け、開発者コミュニティにおける人種・出自・背景に基づく差別と闘うことを目的としています。",
+                about_p2: "Restudio ソサエティは、特に経済的に困難な状況にある人々がテクノロジーにアクセスし、学び、理解できるよう支援しています。Restudio 製品を無償で提供し、<strong>Restudio Learn</strong> を通じて技術知識を共有することでこれを実現しています。Restudio Learn は、Restudio 製品を文書化し、その使い方を説明することに特化したプラットフォームです。",
+                about_p3: "Restudio ソサエティは、経済状況、社会的背景、または人種が、テクノロジーを学んだり開発者になったりする上での障壁となってはならないと考えています。",
+                about_quote: "<i class=\"fas fa-quote-left\" style=\"margin-right: 8px; opacity: 0.6;\"></i> 私たちの使命は、単にテクノロジーを無料にすることではなく、その<strong>知識、理解、アクセス</strong>をできるだけ多くの人に届けることです。",
+                goals_title: "私たちの目標",
+                goal_1: "開発者コミュニティにおける人種的・民族的差別と闘う。",
+                goal_2: "必要な人に Restudio 製品を無償で提供する。",
+                goal_3: "Restudio Learn を通じて Restudio 製品のドキュメントと知識を提供する。",
+                goal_4: "収入が限られている人がテクノロジーとプログラミングを学べるよう支援する。",
+                goal_5: "初心者が開発分野に参入することを奨励する。",
+                goal_6: "テクノロジーへのアクセスにおける経済的・知識的障壁を減らす。",
+                learn_title: "Restudio Learn",
+                learn_p: "<strong>Restudio</strong> 製品を文書化し、その使い方をわかりやすく説明することに特化したプラットフォームで、特に有料のコースやツールを利用できない人々を含め、すべての人が技術知識にアクセスできるようにします。",
+                images_title: "その他の画像",
+                tile_eva_desc: "Eva は、最も支援を必要とする人々に技術的ソリューションを提供し、その発展を支援することを目指しています。",
+                tile_humanitarian: "人道的イニシアチブ",
+                tile_techforall: "みんなのためのテクノロジー",
+                tile_mission_desc: "より包括的なテックコミュニティの構築",
+                tile_mission: "私たちの使命",
+                tile_opensource: "オープンソース · 無料 · アクセス可能",
+                tile_learn: "Restudio Learn",
+                contact_title: "お問い合わせ",
+                contact_email: "メール",
+                contact_desc: "私たちはあなたにサービスを提供するためにここにいます、ユーザー！いつでもお気軽にご連絡ください！",
+                footer_text: "RSL (Restudio Software Laboratories) の一部"
+            }}
+        };
+
+        /* ============================================================
+           i18next Init
+           ============================================================ */
+        const savedLang = (function(){
+            try { return localStorage.getItem('restudio-society-lang'); } catch(e){ return null; }
+        })();
+
+        i18next.init({
+            lng: savedLang || 'en',
+            fallbackLng: 'en',
+            resources: resources,
+            interpolation: { escapeValue: false }
+        }, function() {
+            applyI18n();
+            const sel = document.getElementById('langSelect');
+            if (sel) sel.value = i18next.language;
+        });
+
+        function applyI18n() {
+            document.querySelectorAll('[data-i18n]').forEach(function(el){
+                el.textContent = i18next.t(el.getAttribute('data-i18n'));
+            });
+            document.querySelectorAll('[data-i18n-html]').forEach(function(el){
+                el.innerHTML = i18next.t(el.getAttribute('data-i18n-html'));
+            });
+            const lng = i18next.language || 'en';
+            document.documentElement.lang = lng;
+            document.documentElement.dir = (lng === 'ar') ? 'rtl' : 'ltr';
+            document.title = i18next.t('page_title');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const sel = document.getElementById('langSelect');
+            if (!sel) return;
+            sel.addEventListener('change', function(e){
+                i18next.changeLanguage(e.target.value, function(){
+                    try { localStorage.setItem('restudio-society-lang', e.target.value); } catch(err){}
+                    applyI18n();
+                });
+            });
+
+            /* ===== Lightgallery ===== */
+            lightGallery(document.getElementById('lightgallery'), {
+                selector: '.tile-wide, .tile:not([style*="cursor: default;"])',
+                thumbnail: true,
+                animateThumb: false,
+                showThumbByDefault: false,
+                autoplay: false,
+                speed: 500,
+                download: false,
+                counter: false
+            });
+
+            /* ===== Smooth scroll for "Explore More" ===== */
+            document.querySelector('.btn').addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector('#about');
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+
+            /* ===== Fade Up + Rainbow logic ===== */
+            const title = document.getElementById('societyTitle');
+            let fadeUpDone = false;
+
+            title.addEventListener('mouseenter', function() {
+                if (!fadeUpDone) {
+                    this.classList.add('fade-up');
+                    fadeUpDone = true;
+                    setTimeout(() => {
+                        this.classList.remove('fade-up');
+                        this.classList.add('rainbow-active');
+                    }, 800);
+                } else {
+                    if (!this.classList.contains('rainbow-active')) {
+                        this.classList.add('rainbow-active');
+                    }
+                }
+            });
+
+            title.addEventListener('mouseleave', function() {
+                this.classList.remove('rainbow-active');
+            });
+        });
+    </script>
+
+</body>
+</html>
